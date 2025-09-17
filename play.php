@@ -1,0 +1,34 @@
+<?php
+
+require_once __DIR__ . '/lib/Ship.php';
+
+function printShipSummary($someShip)
+{
+    echo 'Ship name: ' . $someShip->name;
+    echo '<hr/>';
+    $someShip->sayHello();
+    echo '<hr/>';
+    echo $someShip->getName();
+    echo '<hr/>';
+    echo $someShip->getNameAndSpecs(true);
+}
+
+$myShip = new Ship();
+$myShip->name = 'Brodić';
+$myShip->weaponPower = 10;
+
+$otherShip = new Ship();
+$otherShip->name = 'bolji brodić';
+$otherShip->weaponPower = 5;
+$otherShip->setStrength(50);
+
+printShipSummary($myShip);
+echo '<hr/>';
+printShipSummary($otherShip);
+echo '<hr/>';
+
+if ($myShip->doesGivenShipHaveMoreStrength($otherShip)) {
+    echo $otherShip->name . ' has more strength';
+} else {
+    echo $myShip->getName() . ' has more strength';
+}
