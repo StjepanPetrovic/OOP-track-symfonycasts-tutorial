@@ -5,8 +5,6 @@ $container = new Container($configuration);
 $shipLoader = $container->getShipLoader();
 $ships = $shipLoader->getShips();
 
-//var_dump($ships);die();
-
 $errorMessage = '';
 if (isset($_GET['error'])) {
     switch ($_GET['error']) {
@@ -95,7 +93,7 @@ if (isset($_GET['error'])) {
                             <option value="">Choose a Ship</option>
                             <?php foreach ($ships as $ship): ?>
                                 <?php if ($ship->isFunctional()): ?>
-                                    <option value="<?php echo $ship->getId(); ?>"><?php echo $ship->getNameAndSpecs(false); ?></option>
+                                    <option value="<?php echo $ship->getId(); ?>"><?php echo $ship->getNameAndSpecs(); ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
@@ -107,7 +105,7 @@ if (isset($_GET['error'])) {
                             <option value="">Choose a Ship</option>
                             <?php foreach ($ships as $ship): ?>
                                 <?php if ($ship->isFunctional()): ?>
-                                    <option value="<?php echo $ship->getId(); ?>"><?php echo $ship->getNameAndSpecs(false); ?></option>
+                                    <option value="<?php echo $ship->getId(); ?>"><?php echo $ship->getNameAndSpecs(); ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>

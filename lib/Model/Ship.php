@@ -14,9 +14,10 @@ class Ship
 
     private $underRepair;
 
-    public function __construct(string $name)
+    public function __construct($name)
     {
         $this->name = $name;
+        // randomly put this ship under repair
         $this->underRepair = mt_rand(1, 100) < 30;
     }
 
@@ -25,18 +26,23 @@ class Ship
         return !$this->underRepair;
     }
 
-    public function sayHello(){
-        echo 'HALO';
+    public function sayHello()
+    {
+        echo 'Hello!';
     }
 
     public function getName()
     {
         return $this->name;
     }
-
-    public function setName($name)
+    
+    public function setStrength($number)
     {
-        $this->name = $name;
+        if (!is_numeric($number)) {
+            throw new \Exception('Invalid strength passed '.$number);
+        }
+
+        $this->strength = $number;
     }
 
     public function getStrength()
@@ -44,50 +50,11 @@ class Ship
         return $this->strength;
     }
 
-    public function setStrength($value)
+    public function getNameAndSpecs($useShortFormat = false)
     {
-        if (!is_numeric($value)) {
-            throw new Exception('Invalid strength passed ' . $value);
-        }
-
-        $this->strength = $value;
-    }
-
-    public function getWeaponPower()
-    {
-        return $this->weaponPower;
-    }
-
-    public function setWeaponPower($weaponPower)
-    {
-        $this->weaponPower = $weaponPower;
-    }
-
-    public function getJediFactor()
-    {
-        return $this->jediFactor;
-    }
-
-    public function setJediFactor($jediFactor)
-    {
-        $this->jediFactor = $jediFactor;
-    }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
-
-    public function getNameAndSpecs($shortEcho)
-    {
-        if ($shortEcho) {
+        if ($useShortFormat) {
             return sprintf(
-                '%s: %s,%s,%s',
+                '%s: %s/%s/%s',
                 $this->name,
                 $this->weaponPower,
                 $this->jediFactor,
@@ -107,5 +74,61 @@ class Ship
     public function doesGivenShipHaveMoreStrength($givenShip)
     {
         return $givenShip->strength > $this->strength;
+    }
+
+    /**
+     * @return int
+     */
+    public function getWeaponPower()
+    {
+        return $this->weaponPower;
+    }
+
+    /**
+     * @return int
+     */
+    public function getJediFactor()
+    {
+        return $this->jediFactor;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @param int $weaponPower
+     */
+    public function setWeaponPower($weaponPower)
+    {
+        $this->weaponPower = $weaponPower;
+    }
+
+    /**
+     * @param int $jediFactor
+     */
+    public function setJediFactor($jediFactor)
+    {
+        $this->jediFactor = $jediFactor;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 }

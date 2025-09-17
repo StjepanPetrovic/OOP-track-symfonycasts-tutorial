@@ -21,9 +21,13 @@ class ShipLoader {
         return $ships;
     }
 
-    public function findOneById($id) {
-        $pdo = $this->getPDO();
-        $statement = $pdo->prepare('SELECT * FROM ship WHERE id = :id');
+    /**
+     * @param $id
+     * @return Ship
+     */
+    public function findOneById($id)
+    {
+        $statement = $this->getPDO()->prepare('SELECT * FROM ship WHERE id = :id');
         $statement->execute(array('id' => $id));
         $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
 
@@ -45,18 +49,20 @@ class ShipLoader {
         return $ship;
     }
 
+    /**
+     * @return PDO
+     */
+    private function getPDO()
+    {
+        return $this->pdo;
+    }
+
     private function queryForShips()
     {
-        $pdo = $this->getPDO();
-        $statement = $pdo->prepare('SELECT * FROM ship');
+        $statement = $this->getPDO()->prepare('SELECT * FROM ship');
         $statement->execute();
         $shipsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $shipsArray;
-    }
-
-    private function getPDO()
-    {
-        return $this->pdo;
     }
 }

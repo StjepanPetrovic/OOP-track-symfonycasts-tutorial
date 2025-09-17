@@ -1,10 +1,11 @@
 <?php
 
-class BattleManager {
+class BattleManager
+{
     /**
      * Our complex fighting algorithm!
      *
-     * @return BattleResult With keys winning_ship, losing_ship & used_jedi_powers
+     * @return BattleResult
      */
     public function battle(Ship $ship1, $ship1Quantity, Ship $ship2, $ship2Quantity)
     {
@@ -33,6 +34,7 @@ class BattleManager {
             $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
         }
 
+        // update the strengths on the ships, so we can show this
         $ship1->setStrength($ship1Health);
         $ship2->setStrength($ship2Health);
 
