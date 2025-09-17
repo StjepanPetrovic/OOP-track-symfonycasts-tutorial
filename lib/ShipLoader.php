@@ -3,6 +3,14 @@
 class ShipLoader {
     private $pdo;
 
+    public function __construct(
+        private $dbDsn,
+        private $dbUser,
+        private $dbPass,
+    )
+    {
+    }
+
     /**
      * @return Ship[]
      */
@@ -56,7 +64,7 @@ class ShipLoader {
     private function getPDO()
     {
         if (null === $this->pdo) {
-            $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
+            $pdo = new PDO($this->dbDsn, $this->dbUser, $this->dbPass);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $this->pdo = $pdo;
