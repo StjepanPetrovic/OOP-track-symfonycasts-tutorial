@@ -1,11 +1,13 @@
 <?php
 require __DIR__ . '/bootstrap.php';
 
-$shipLoader = new ShipLoader(
+$pdo = new PDO(
     $configuration['db_dsn'],
     $configuration['db_user'],
     $configuration['db_pass'],
 );
+
+$shipLoader = new ShipLoader($pdo);
 $ships = $shipLoader->getShips();
 
 //var_dump($ships);die();
