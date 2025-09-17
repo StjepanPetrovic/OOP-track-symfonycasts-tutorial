@@ -4,14 +4,14 @@ class BattleResult
 {
 
     /**
-     * @param Ship $winningShip
-     * @param Ship $losingShip
+     * @param AbstractShip|null $winningShip
+     * @param AbstractShip|null $losingShip
      * @param boolean $usedJediPowers
      */
     public function __construct(
-        private       $usedJediPowers,
-        private ?Ship $losingShip = null,
-        private ?Ship $winningShip = null,
+        private $usedJediPowers,
+        private ?AbstractShip $losingShip = null,
+        private ?AbstractShip $winningShip = null,
     ){
     }
 
