@@ -1,5 +1,9 @@
 <?php
 
+namespace Service;
+
+use PDO;
+
 final class PdoShipStorage implements ShipStorageInterface
 {
     public function __construct(private PDO $pdo)

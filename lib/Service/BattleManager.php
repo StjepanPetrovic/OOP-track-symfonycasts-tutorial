@@ -2,8 +2,8 @@
 
 namespace Service;
 
-use AbstractShip;
-use BattleResult;
+use Model\AbstractShip;
+use Model\BattleResult;
 
 class BattleManager
 {
