@@ -2,8 +2,6 @@
 
 namespace Service;
 
-use PDO;
-
 class Container
 {
     private $pdo;
@@ -19,18 +17,18 @@ class Container
     }
 
     /**
-     * @return PDO
+     * @return \PDO
      */
     public function getPDO()
     {
         if (null === $this->pdo) {
-            $this->pdo = new PDO(
+            $this->pdo = new \PDO(
                 $this->configuration['db_dsn'],
                 $this->configuration['db_user'],
                 $this->configuration['db_pass'],
             );
 
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         }
 
         return $this->pdo;
@@ -54,8 +52,8 @@ class Container
     public function getShipStorage()
     {
         if (null === $this->shipStorage){
-//            $this->shipStorage = new PdoShipStorage($this->getPDO());
-            $this->shipStorage = new JsonFileShipStorage(__DIR__ . '/../../resources/ships.json');
+            $this->shipStorage = new PdoShipStorage($this->getPDO());
+//            $this->shipStorage = new JsonFileShipStorage(__DIR__ . '/../../resources/ships.json');
         }
 
         return $this->shipStorage;

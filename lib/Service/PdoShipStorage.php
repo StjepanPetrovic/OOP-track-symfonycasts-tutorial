@@ -2,11 +2,9 @@
 
 namespace Service;
 
-use PDO;
-
 final class PdoShipStorage implements ShipStorageInterface
 {
-    public function __construct(private PDO $pdo)
+    public function __construct(private \PDO $pdo)
     {
     }
 
@@ -14,7 +12,7 @@ final class PdoShipStorage implements ShipStorageInterface
     {
         $statement = $this->pdo->prepare('SELECT * FROM ship');
         $statement->execute();
-        $shipsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $shipsArray = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
         return $shipsArray;
     }
@@ -23,7 +21,7 @@ final class PdoShipStorage implements ShipStorageInterface
     {
         $statement = $this->pdo->prepare('SELECT * FROM ship WHERE id = :id');
         $statement->execute(array('id' => $id));
-        $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
+        $shipArray = $statement->fetch(\PDO::FETCH_ASSOC);
 
         if (!$shipArray) {
             return null;
