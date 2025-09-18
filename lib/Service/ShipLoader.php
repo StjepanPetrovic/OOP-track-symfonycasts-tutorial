@@ -16,7 +16,12 @@ class ShipLoader {
      */
     public function getShips()
     {
-        $shipsData = $this->shipStorage->fetchAllShipsData();
+        try {
+            $shipsData = $this->shipStorage->fetchAllShipsData();
+        } catch (\Exception $e) {
+            trigger_error('Exception! ' . $e->getMessage());
+            $shipsData = [];
+        }
 
         $ships = array();
 
