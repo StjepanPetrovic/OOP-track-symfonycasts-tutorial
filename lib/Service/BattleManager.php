@@ -1,5 +1,10 @@
 <?php
 
+namespace Battle;
+
+use AbstractShip;
+use BattleResult;
+
 class BattleManager
 {
     const TYPE_NORMAL = 'normal';

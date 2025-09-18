@@ -1,5 +1,7 @@
 <?php
 
+use Battle\BattleManager;
+
 class Container
 {
     private $pdo;
