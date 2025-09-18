@@ -113,4 +113,19 @@ abstract class AbstractShip
     {
         $this->id = $id;
     }
+
+    public function __toString(): string
+    {
+        return $this->getName();
+    }
+
+    public function __get($propertyName) // avoid using it
+    {
+        return $this->$propertyName;
+    }
+
+    public function __set(string $name, $value): void // avoid using it
+    {
+        // TODO: Implement __set() method.
+    }
 }
