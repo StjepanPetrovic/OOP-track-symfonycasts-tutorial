@@ -5,6 +5,7 @@ namespace Service;
 use Model\AbstractShip;
 use Model\RebelShip;
 use Model\Ship;
+use Model\ShipCollection;
 
 class ShipLoader {
     public function __construct(private ShipStorageInterface $shipStorage)
@@ -12,7 +13,7 @@ class ShipLoader {
     }
 
     /**
-     * @return AbstractShip[]
+     * @return ShipCollection
      */
     public function getShips()
     {
@@ -29,7 +30,7 @@ class ShipLoader {
             $ships[] = $this->createShipFromData($shipData);
         }
 
-        return $ships;
+        return new ShipCollection($ships);
     }
 
     /**

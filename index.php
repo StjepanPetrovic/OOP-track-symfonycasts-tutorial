@@ -12,6 +12,8 @@ $ships = $shipLoader->getShips();
 $brokenShip = new BrokenShip('broken ship the best');
 $ships[] = $brokenShip;
 
+$ships->removeAllBrokenShips();
+
 $battleTypes = BattleManager::getALlBattleTypesWithDescription();
 
 $errorMessage = '';
