@@ -6,10 +6,4 @@ $configuration = array(
     'db_pass' => null,
 );
 
-spl_autoload_register(function ($className) {
-    $path = __DIR__ . '/lib/' . str_replace('\\', '/', $className) . '.php';
-
-    if (file_exists($path)) {
-        require $path;
-    }
-});
+require __DIR__ . '/vendor/autoload.php';
