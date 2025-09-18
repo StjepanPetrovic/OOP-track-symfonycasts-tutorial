@@ -1,0 +1,28 @@
+<?php
+
+class JsonFileShipStorage extends AbstractShipStorage
+{
+    public function __construct(private $filename)
+    {
+    }
+
+    public function fetchAllShipsData()
+    {
+        $jsonContents = file_get_contents($this->filename);
+
+        return json_decode($jsonContents, true);
+    }
+
+    public function fetchSingleShipData($id)
+    {
+        $ships = $this->fetchAllShipsData();
+
+        foreach ($ships as $ship) {
+            if ($ship['id'] == $id) {
+                return $ship;
+            }
+        }
+
+        return null;
+    }
+}

@@ -1,7 +1,7 @@
 <?php
 
 class ShipLoader {
-    public function __construct(private PdoShipStorage $shipStorage)
+    public function __construct(private AbstractShipStorage $shipStorage)
     {
     }
 
