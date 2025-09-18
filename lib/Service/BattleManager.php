@@ -2,36 +2,50 @@
 
 class BattleManager
 {
+    const TYPE_NORMAL = 'normal';
+    const TYPE_NO_JEDI = 'no_yedi';
+    const TYPE_ONLY_JEDI = 'only_yedi';
+
     /**
      * Our complex fighting algorithm!
      *
      * @return BattleResult
      */
-    public function battle(AbstractShip $ship1, $ship1Quantity, AbstractShip $ship2, $ship2Quantity)
+    public function battle(AbstractShip $ship1, $ship1Quantity, AbstractShip $ship2, $ship2Quantity, $battleType)
     {
         $ship1Health = $ship1->getStrength() * $ship1Quantity;
         $ship2Health = $ship2->getStrength() * $ship2Quantity;
 
         $ship1UsedJediPowers = false;
         $ship2UsedJediPowers = false;
+        $i = 0;
         while ($ship1Health > 0 && $ship2Health > 0) {
             // first, see if we have a rare Jedi hero event!
-            if ($this->didJediDestroyShipUsingTheForce($ship1)) {
+            if ($battleType != BattleManager::TYPE_NO_JEDI && $this->didJediDestroyShipUsingTheForce($ship1)) {
                 $ship2Health = 0;
                 $ship1UsedJediPowers = true;
 
                 break;
             }
-            if ($this->didJediDestroyShipUsingTheForce($ship2)) {
+            if ($battleType != BattleManager::TYPE_NO_JEDI && $this->didJediDestroyShipUsingTheForce($ship2)) {
                 $ship1Health = 0;
                 $ship2UsedJediPowers = true;
 
                 break;
             }
 
-            // now battle them normally
-            $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
-            $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
+            if ($battleType != BattleManager::TYPE_ONLY_JEDI) {
+                // now battle them normally
+                $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
+                $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
+            }
+
+            if ($i == 100) {
+                $ship1Health = 0;
+                $ship2Health = 0;
+            }
+
+            $i++;
         }
 
         // update the strengths on the ships, so we can show this
