@@ -1,6 +1,6 @@
 <?php
 
-use Battle\BattleManager;
+use Service\BattleManager;
 
 class Container
 {

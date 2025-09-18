@@ -1,6 +1,6 @@
 <?php
 
-namespace Battle;
+namespace Service;
 
 use AbstractShip;
 use BattleResult;
