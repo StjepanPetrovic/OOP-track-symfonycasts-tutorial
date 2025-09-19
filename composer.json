@@ -6,6 +6,7 @@
   },
 
   "require": {
-    "doctrine/orm": "*"
+    "doctrine/orm": "*",
+    "ext-pdo": "*"
   }
 }
