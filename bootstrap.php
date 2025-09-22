@@ -13,8 +13,10 @@ $configuration = array(
 );
 
 $dbParamsDoctrine = [
-    'driver' => 'pdo_sqlite',
-    'path' => __DIR__ . '/db.sqlite',
+    'driver'   => 'pdo_mysql',
+    'user'     => 'root',
+    'password' => '',
+    'dbname'   => 'oo_battle',
 ];
 
 $configDoctrine = ORMSetup::createAttributeMetadataConfig(
