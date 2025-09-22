@@ -23,5 +23,6 @@ $configDoctrine = ORMSetup::createAttributeMetadataConfig(
     paths: [__DIR__ . '/lib'],
     isDevMode: true,
 );
+$configDoctrine->enableNativeLazyObjects(true);
 $connection = DriverManager::getConnection($dbParamsDoctrine, $configDoctrine);
 $entityManager = new EntityManager($connection, $configDoctrine);
