@@ -16,7 +16,7 @@ $dbParamsDoctrine = [
     'driver'   => 'pdo_mysql',
     'user'     => 'root',
     'password' => '',
-    'dbname'   => 'oo_battle_2',
+    'dbname'   => 'oo_battle',
 ];
 
 $configDoctrine = ORMSetup::createAttributeMetadataConfig(
