@@ -16,11 +16,11 @@ $dbParamsDoctrine = [
     'driver'   => 'pdo_mysql',
     'user'     => 'root',
     'password' => '',
-    'dbname'   => 'oo_battle',
+    'dbname'   => 'oo_battle_2',
 ];
 
 $configDoctrine = ORMSetup::createAttributeMetadataConfig(
-    paths: [__DIR__ . '/lib'],
+    paths: [__DIR__ . '/lib/Entity'],
     isDevMode: true,
 );
 $configDoctrine->enableNativeLazyObjects(true);
