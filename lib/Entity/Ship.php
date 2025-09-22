@@ -25,6 +25,15 @@ final class Ship
     #[ORM\Column(type: 'string')]
     private string $team;
 
+    public function __construct(string $name, float $weaponPower, float $strength, float $jediFactor, string $team)
+    {
+        $this->name = $name;
+        $this->weaponPower = $weaponPower;
+        $this->strength = $strength;
+        $this->jediFactor = $jediFactor;
+        $this->team = $team;
+    }
+
     public function getId(): int
     {
         return $this->id;
