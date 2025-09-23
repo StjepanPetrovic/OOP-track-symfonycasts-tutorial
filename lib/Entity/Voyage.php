@@ -19,6 +19,15 @@ final class Voyage
     #[ORM\Column(type: 'date')]
     private string $arrivalDate;
 
+    #[ORM\ManyToOne(targetEntity: Ship::class, inversedBy: 'voyages')]
+    private Ship $ship;
+
+    #[ORM\ManyToOne(targetEntity: Port::class, inversedBy: 'departures')]
+    private Port $departurePort;
+
+    #[ORM\ManyToOne(targetEntity: Port::class, inversedBy: 'arrivals')]
+    private Port $arrivalPort;
+
     /**
      * @param string $departureDate
      * @param string $arrivalDate

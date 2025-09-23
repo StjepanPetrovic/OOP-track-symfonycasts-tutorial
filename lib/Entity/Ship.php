@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -24,6 +25,10 @@ final class Ship
     private float $jediFactor;
     #[ORM\Column(type: 'string')]
     private string $team;
+
+    /** @var Collection<int, Voyage> */
+    #[ORM\OneToMany(targetEntity: Voyage::class, mappedBy: 'ship')]
+    private Collection $voyages;
 
     public function __construct(string $name, float $weaponPower, float $strength, float $jediFactor, string $team)
     {

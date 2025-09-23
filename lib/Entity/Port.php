@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity()]
@@ -18,6 +19,15 @@ final class Port
     private string $name;
     #[ORM\Column(type: 'string')]
     private string $country;
+
+    /** @var Collection<int, Voyage> */
+    #[ORM\OneToMany(targetEntity: Voyage::class, mappedBy: 'departurePort')]
+    private Collection $departures;
+
+    /** @var Collection<int, Voyage> */
+    #[ORM\OneToMany(targetEntity: Voyage::class, mappedBy: 'arrivalPort')]
+    private Collection $arrivals;
+
 
     /**
      * @param string $name
